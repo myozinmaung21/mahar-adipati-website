@@ -218,7 +218,7 @@ index += f"""
       <div class="section-head reveal">
         <span class="eyebrow">Our Services</span>
         <h2>Guides from our travel desk</h2>
-        <p>Practical guides to the three things we do every day. Read up, then let us handle the rest.</p>
+        <p>Practical guides to everything we do, from flights and visas to cars and tours. Read up, then let us handle the rest.</p>
       </div>
       <div class="post-grid">
 {cards}      </div>
