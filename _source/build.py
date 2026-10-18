@@ -134,8 +134,8 @@ def header(C, pg, active=""):
         <li class="menu-lang">{switch}</li>
       </ul>
       <div class="nav-actions">
-        {switch}
         <a class="btn btn-gold nav-cta" href="{pg.home}#contact">{T['contact']}</a>
+        {switch}
         <button class="menu-toggle" aria-label="{T['open_menu']}" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>

@@ -95,7 +95,7 @@ h3 { font-size: 1.3rem; }
 /* Contact Us always sits at the top right, next to the menu button on smaller screens. */
 .nav-actions { display: flex; align-items: center; gap: 10px; }
 .nav-cta { padding: 10px 20px; color: var(--purple-950); white-space: nowrap; }
-/* EN | မြန်မာ language switcher, left of Contact Us. Each half links to the same page in that language. */
+/* EN | မြန်မာ language switcher, right of Contact Us. Each half links to the same page in that language. */
 .lang-switch {
   display: inline-flex; align-items: center; gap: 2px; padding: 3px; border-radius: 999px;
   border: 1px solid rgba(241, 217, 160, .45);
