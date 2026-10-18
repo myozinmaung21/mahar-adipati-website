@@ -124,7 +124,7 @@ ARTICLES = {
       </ul>
 
       <h2>Make it a complete trip</h2>
-      <p>Book your flight together with your <a href="visas.html">visit visa, hotel and travel insurance</a>, and we'll make sure all your dates line up. Flying into the UAE? We can also arrange an <a href="car-rental.html">airport pick-up</a>.</p>
+      <p>Book your flight together with your <a href="visas">visit visa, hotel and travel insurance</a>, and we'll make sure all your dates line up. Flying into the UAE? We can also arrange an <a href="car-rental">airport pick-up</a>.</p>
 
       <h2>Book in four steps</h2>
       <ol class="steps">
@@ -165,7 +165,7 @@ ARTICLES = {
       <div class="callout"><p><strong>Prices and processing times change often.</strong> Contact us with your nationality and travel dates and we'll give you the current fee, processing time and document list for your visa.</p></div>
 
       <h2>Travel services</h2>
-      <p>Once your visa is sorted, we can book the rest of your trip too. Need a flight? See our <a href="air-tickets.html">International Air Tickets</a> service.</p>
+      <p>Once your visa is sorted, we can book the rest of your trip too. Need a flight? See our <a href="air-tickets">International Air Tickets</a> service.</p>
       <div class="option-grid option-grid-3">
         <div class="option"><strong>Worldwide Hotel Booking</strong><span>Hotels for every budget, from city stays to beach resorts, wherever you're going.</span></div>
         <div class="option"><strong>Worldwide Travel Insurance</strong><span>Cover for your trip abroad, with the policy explained before you buy.</span></div>

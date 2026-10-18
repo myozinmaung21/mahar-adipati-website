@@ -51,24 +51,35 @@ def load(name):
     return mod
 
 
+def clean(path):
+    """Public address of a page: "index.html" -> "", "services/visas.html" -> "services/visas".
+    Vercel serves these without the .html (cleanUrls in vercel.json) and redirects old .html links."""
+    return "" if path == "index.html" else path[:-len(".html")]
+
+
 class Page:
-    """Where one page lives, and the relative links it needs. English is at the site root, Burmese under my/."""
+    """Where one page lives and the links it needs. English is at the site root, Burmese under /my/.
+    Links between pages are root-absolute clean addresses (/, /services/visas, /my/...), so they
+    never show index.html or .html; assets stay relative so the files also open straight from disk."""
 
     def __init__(self, lang, path):
         self.lang, self.path = lang, path            # path: "index.html" or "services/<slug>.html"
         depth = path.count("/") + (lang == "my")
         self.root = "../" * depth                    # from this page back to the site root (assets, styles)
-        self.home = "" if path == "index.html" else "../index.html"   # this language's homepage, for #anchors
-        self.logo = "index.html" if path == "index.html" else "../index.html"
+        self.base = "/my/" if lang == "my" else "/"  # this language's homepage
+        self.home = "" if path == "index.html" else self.base   # prefix for #services, #about, #contact
+        self.logo = self.base
         self.out = OUT / ("my/" if lang == "my" else "") / path
-        here = path.split("/")[-1]                   # this page, relative to itself
-        self.en_href = here if lang == "en" else self.root + path
-        self.my_href = here if lang == "my" else self.root + "my/" + path
+        self.en_href = "/" + clean(path)
+        self.my_href = "/my/" + clean(path)
         self.alt_href = self.my_href if lang == "en" else self.en_href
 
+    def link(self, path):
+        """Clean link to another page in this language, e.g. link("services/visas.html") -> /my/services/visas."""
+        return self.base + clean(path)
+
     def url(self, lang):
-        p = "" if self.path == "index.html" else self.path
-        return SITE + ("my/" if lang == "my" else "") + p
+        return SITE + ("my/" if lang == "my" else "") + clean(self.path)
 
 
 MY_FONT = "https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;500;600;700&family=Noto+Serif+Myanmar:wght@500;600;700&display=swap"
@@ -221,7 +232,7 @@ def build_index(C):
     cards = ""
     for i, (slug, icon) in enumerate(ORDER, 1):
         name, meta = C.POSTS[slug]
-        cards += f"""        <a class="post-card reveal" href="services/{slug}.html" style="transition-delay:{(i-1)*0.1:.1f}s">
+        cards += f"""        <a class="post-card reveal" href="{pg.link(f'services/{slug}.html')}" style="transition-delay:{(i-1)*0.1:.1f}s">
           <div class="post-cover"><span class="post-num">0{i}</span>{cover(C, pg, slug, name, icon, "post-img")}</div>
           <div class="post-body">
             <div class="post-meta">{meta}</div>
@@ -312,10 +323,10 @@ def build_articles(C):
         prev_p = ORDER[i - 1][0] if i > 0 else None
         next_p = ORDER[i + 1][0] if i < len(ORDER) - 1 else None
         nav = '<div class="article-nav">'
-        nav += (f'<a href="{prev_p}.html"><small>{T["prev"]}</small>{C.POSTS[prev_p][0]}</a>' if prev_p
-                else f'<a href="../index.html#services"><small>{T["back"]}</small>{T["all_services"]}</a>')
-        nav += (f'<a href="{next_p}.html" style="text-align:right"><small>{T["next"]}</small>{C.POSTS[next_p][0]}</a>' if next_p
-                else f'<a href="../index.html#about" style="text-align:right"><small>{T["next"]}</small>{T["about_us"]}</a>')
+        nav += (f'<a href="{pg.link(f"services/{prev_p}.html")}"><small>{T["prev"]}</small>{C.POSTS[prev_p][0]}</a>' if prev_p
+                else f'<a href="{pg.base}#services"><small>{T["back"]}</small>{T["all_services"]}</a>')
+        nav += (f'<a href="{pg.link(f"services/{next_p}.html")}" style="text-align:right"><small>{T["next"]}</small>{C.POSTS[next_p][0]}</a>' if next_p
+                else f'<a href="{pg.base}#about" style="text-align:right"><small>{T["next"]}</small>{T["about_us"]}</a>')
         nav += "</div>"
         html = head(C, pg, T["article_title"].format(title=a["title"]), a["lead"])
         html += header(C, pg, "services")
@@ -324,7 +335,7 @@ def build_articles(C):
     <img class="hero-pattern" src="{pg.root}assets/logo-mark.png" alt="">
     <div class="container article-hero-grid">
       <div>
-        <div class="breadcrumb"><a href="../index.html">{T['crumb_home']}</a> / <a href="../index.html#services">{T['crumb_services']}</a> / {name}</div>
+        <div class="breadcrumb"><a href="{pg.base}">{T['crumb_home']}</a> / <a href="{pg.base}#services">{T['crumb_services']}</a> / {name}</div>
         <span class="eyebrow" style="color:var(--gold-300)">0{i+1} · {meta}</span>
         <h1 style="font-size:clamp(2rem,4.6vw,3.2rem)">{a['title']}</h1>
         <p class="lead">{a['lead']}</p>
