@@ -41,3 +41,13 @@ if (hashTarget) {
   if (document.readyState === "complete") goToHash();
   else window.addEventListener("load", goToHash);
 }
+
+// Language switcher: remember the visitor's choice, so their next visit opens in the same language.
+// The redirect itself runs in each page's <head>, before anything is drawn.
+document.querySelectorAll("[data-lang-link]").forEach((link) =>
+  link.addEventListener("click", () => {
+    try {
+      localStorage.setItem("lang", link.dataset.langLink);
+    } catch (e) {}
+  })
+);
