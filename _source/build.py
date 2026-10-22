@@ -6,6 +6,7 @@ PHONE = "+971 XX XXX XXXX"
 PHONE_HREF = "tel:+971XXXXXXXXX"
 WHATSAPP_HREF = "https://wa.me/971XXXXXXXXX"
 EMAIL = "maharadipati.ae@gmail.com"
+FACEBOOK = "https://www.facebook.com/profile.php?id=61595465272587"
 ADDRESS_HTML = "No: 309, 3rd Floor, Al Khazna Tower<br>(Beside of Nissan Car Showroom)<br>Najda Road, Abu Dhabi, UAE"
 MAP_Q = "Al%20Khazna%20Tower%2C%20Abu%20Dhabi"
 MAP_EMBED = f"https://maps.google.com/maps?q={MAP_Q}&z=16&output=embed"
@@ -28,6 +29,7 @@ ICON = {
     "layers": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 12 10 5 10-5M2 17l10 5 10-5"/></svg>',
     "tour": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="24"/><path d="m40.5 23.5-5 12-12 5 5-12z"/><circle cx="32" cy="32" r="1.5"/><path d="M32 4v5M32 55v5M4 32h5M55 32h5"/></svg>',
     "plane": '<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M58 10c-2-2-6-1.5-8.5 1L40 20.5 14 12l-5 5 21 13-9 9.5-8-1.5-4 4 10 5 5 10 4-4-1.5-8L37 35l13 21 5-5-8.5-26 9.5-9.5c2.5-2.5 3-6.5 1-8.5z"/></svg>',
+    "facebook": '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.6 21v-7.6h2.6l.4-3h-3V8.5c0-.9.3-1.5 1.5-1.5H16.7V4.3c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H8v3h2.5V21h3.1z"/></svg>',
     "home": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>',
 }
 
@@ -164,6 +166,10 @@ def footer(C, pg):
           <span class="brand-name gold-text">MAHAR ADIPATI<small>Travel Company</small></span>
         </a>
         <p style="margin-top:20px">{T['footer_blurb']}</p>
+        <div class="social">
+          <a class="social-fb" href="{FACEBOOK}" target="_blank" rel="noopener" aria-label="{T['fb_label']}">{ICON['facebook']}</a>
+          <span>{T['follow']}</span>
+        </div>
         <h4 style="margin-top:28px">{T['quick_links']}</h4>
         <ul class="footer-list">
           <li><a href="{pg.home}#services">{T['our_services']}</a></li>

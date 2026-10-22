@@ -79,6 +79,8 @@ T = dict(
     call="Call Us",
     # footer
     footer_blurb="Visas and passport renewal from one friendly desk in Abu Dhabi. Walk in, call or message us — we'll take it from there.",
+    follow="Follow us on Facebook",
+    fb_label="Mahar Adipati on Facebook (opens in a new tab)",
     quick_links="Quick Links",
     our_services="Our Services",
     visit_office="Visit Our Office",

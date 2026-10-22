@@ -415,3 +415,14 @@ html[lang="my"] .article-hero h1 { font-size: clamp(1.7rem, 3.8vw, 2.6rem) !impo
 html[lang="my"] .eyebrow, html[lang="my"] .post-meta, html[lang="my"] .site-footer h4 { letter-spacing: .02em; }
 html[lang="my"] .nav-links a, html[lang="my"] .btn { line-height: 1.5; }
 html[lang="my"] .btn { padding-block: 11px; }
+/* Facebook link in the footer: a round gold badge with a purple "f", Facebook blue on hover */
+.social { display: flex; align-items: center; gap: 12px; margin-top: 18px; font-size: .9rem; }
+.social-fb {
+  flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--gold-grad); color: var(--purple-950);
+  box-shadow: 0 6px 16px -8px rgba(201, 162, 74, .8);
+  transition: transform .2s ease, background .2s ease, color .2s ease;
+}
+.social-fb svg { width: 22px; height: 22px; }
+.site-footer .social-fb:hover { background: #1877f2; color: #fff; transform: translateY(-2px); }
+.social-fb:focus-visible { outline: 2px solid var(--gold-300); outline-offset: 3px; }
